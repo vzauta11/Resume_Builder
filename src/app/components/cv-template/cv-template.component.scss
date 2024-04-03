@@ -1,0 +1,54 @@
+.cv-container {
+    width: 800px;
+    margin: 0 auto;
+    border: 1px solid black;
+    height: 100vh;
+    padding: 8px;
+
+    & .cv-header {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        & .name-input {
+            width: 60%;
+
+            &::placeholder {
+                font-size: 26px;
+            }
+        }
+
+        & .profession-input {
+            height: 20px;
+            width: 150px;
+            color: var(--blue-500);
+
+            &::placeholder {
+                color: var(--blue-400);
+                font-size: 20px;
+            }
+        }
+
+        & .contacts-container {
+            width: 70%;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+
+            & .contact-icon{
+                color: var(--blue-600);
+            }
+            & .contact-input {
+                // width: 200px;
+                font-size: 14px;
+                height: 20px;
+            }
+
+
+        }
+    }
+
+}
+
+

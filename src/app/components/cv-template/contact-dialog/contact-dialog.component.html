@@ -1,0 +1,24 @@
+<p-dialog header="კონტაქტი" [(visible)]="showDialoge" [draggable]="true" (onHide)="closeDialoge()">
+    <div class="p-grid p-fluid contacts-display-container">
+        <div class="p-col-12 contact-flex">
+            <label for="profession">პროფესია</label>
+            <p-inputSwitch (onChange)="onShowProfession()" [(ngModel)]="showProfession" id="profession"></p-inputSwitch>
+        </div>
+        <div class="p-col-12 contact-flex">
+            <label for="telephone">ტელეფონი</label>
+            <p-inputSwitch (onChange)="onShowPhone()" [(ngModel)]="showPhone" id="telephone"></p-inputSwitch>
+        </div>
+        <div class="p-col-12 contact-flex">
+            <label for="email">ელ-ფოსტა</label>
+            <p-inputSwitch (onChange)="onShowEmail()" [(ngModel)]="showEmail" id="email"></p-inputSwitch>
+        </div>
+        <div class="p-col-12 contact-flex">
+            <label for="location">მდებარეობა</label>
+            <p-inputSwitch (onChange)="onShowLocation()" [(ngModel)]="showLocation" [id]="'location'"></p-inputSwitch>
+        </div>
+        <div class="p-col-12 contact-flex">
+            <label>დაბადების თარიღი</label>
+            <p-inputSwitch (onChange)="onShowBirthdate()" [(ngModel)]="showBirthdate"></p-inputSwitch>
+        </div>
+    </div>
+</p-dialog>

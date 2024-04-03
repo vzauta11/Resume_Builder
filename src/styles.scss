@@ -1,10 +1,49 @@
+// - Font sizes (px)
+// 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 /44 / 52 / 62 / 74 / 86 /98
+// - Font weights
+// Default: 400
+// Medium: 500
+// Semi-bold: 600
+// Bold: 700
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 @import "primeng/resources/themes/lara-light-blue/theme.css";
-@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
 
-@layer reset {
-    *{
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
+* {
+    box-sizing: border-box;
+    font-weight: 400;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+input {
+    border: none;
+}
+
+:root {
+    --blue-100: #eff8ff;
+    --blue-400: #185adb;
+    --blue-500: #1249b5;
+    --blue-600: #0c46b4;
+    --red-100: #fef3f2;
+    --red-400: #df2935;
+    --red-error: #f04438;
+    --red-border: #fda29b;
+    --green-100: #ecfdf3;
+    --green-400: #157145;
+    --orange-100: #fff3eb;
+    --orange-400: #f47e11;
+    --black: #1a1a1a;
+    --black-light: #344054;
+    --black-border: #1a1a1a33;
+    --white: #fff;
+    --white-row-bg: #F9FAFB;
+    --grey-border: #d0d5dd;
+    --grey-light: #b3b3b3;
+    --grey-dark: #475467;
+    --refunded: #4b4b4b;
+    --refunded-bg: #EEEEEE;
 }
