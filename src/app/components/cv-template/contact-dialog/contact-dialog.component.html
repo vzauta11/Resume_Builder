@@ -1,4 +1,4 @@
-<p-dialog header="კონტაქტი" [(visible)]="showDialoge" [draggable]="true" (onHide)="closeDialoge()">
+<p-dialog header="კონტაქტი" [modal]="true" [(visible)]="showDialog" [draggable]="true" (onHide)="onShowDialoge()">
     <div class="p-grid p-fluid contacts-display-container">
         <div class="p-col-12 contact-flex">
             <label for="profession">პროფესია</label>

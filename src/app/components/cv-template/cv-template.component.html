@@ -1,12 +1,10 @@
 <div class="cv-container">
     <div class="cv-header">
-        <input class="name-input" type="text" placeholder="მიუთითეთ თქვენი სახელი" pInputText />
+        <input class="name-input" [(ngModel)]="name" type="text" placeholder="მიუთითეთ თქვენი სახელი" pInputText />
         <input *ngIf="showProfession" class="profession-input" type="text" placeholder="პროფესია" pInputText />
 
-        <app-contact-dialog 
-            (showPhoneEmit)="onShowPhone($event)" (showEmailEmit)="onShowEmail($event)"
-            (showBirthdateEmit)="onShowBirthdate($event)" (showLocationEmit)="onShowLocation($event)"
-            (showProfessionEmit)="onShowProfession($event)" (showDialogeEmit)="onCloseDialoge($event)" [showDialoge]="showDialoge">
+        <app-contact-dialog [(showDialog)]="showDialoge" [(showEmail)]="showEmail" [(showPhone)]="showPhone"
+            [(showBirthdate)]="showBirthdate" [(showProfession)]="showProfession" [(showLocation)]="showLocation">
         </app-contact-dialog>
 
         <div class="contacts-container">
@@ -28,25 +26,93 @@
             </span>
         </div>
 
-
     </div>
 
-    <i (click)="onShowDialoge()" style="font-size: 40px;" class="pi pi-cog"></i>
+    <i (click)="onShowDialoge()" class="pi pi-cog settings"></i>
 
-    <br>
-    <br>
     <hr>
-    <br>
 
-    <div class="card" [style]="{'width':'400px'}">
-        <p-editor>
-            <ng-template pTemplate="header">
-                <span class="ql-formats">
-                    <button type="button" class="ql-bold" aria-label="Bold"></button>
-                    <button type="button" class="ql-italic" aria-label="Italic"></button>
-                    <button type="button" class="ql-underline" aria-label="Underline"></button>
-                </span>
-            </ng-template>
-        </p-editor>
+
+    <div class="cv-content">
+        <div class="left-content" [style]="{'width':'400px'}">
+            <div class="section-title">რეზიუმე</div>
+            <p-editor placeholder="დაწერეთ თქვენი გამოცდილების შესახებ მოკლე შეჯამება">
+                <ng-template pTemplate="header">
+                    <span class="ql-formats">
+                        <button type="button" class="ql-bold" aria-label="Bold"></button>
+                        <button type="button" class="ql-italic" aria-label="Italic"></button>
+                        <button type="button" class="ql-underline" aria-label="Underline"></button>
+                    </span>
+                </ng-template>
+            </p-editor>
+            <hr>
+            <div (click)="onShowExperience()" class="section-title">გამოცდილება
+                <!-- <ng-container *ngIf="showExperience; else minus">+</ng-container>
+                <ng-template #minus>-</ng-template> -->
+                <svg [ngClass]="{ rotate: showExperience, initial: !showExperience }" width="8" height="8"
+                    viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 1L1 7M1 1L7 7" stroke="#185ADB" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+
+            <!-- EXPERIENCE -->
+            <div class="experience-header" *ngIf="showExperience">
+                <input class="custom-input" type="text" placeholder="სათაური" />
+                <input class="custom-input" type="text" placeholder="კომპანიის სახელი" />
+                <input class="custom-input" type="text" placeholder="პერიოდი" />
+                <input class="custom-input" type="text" placeholder="მდებარეობა" />
+                <p-editor placeholder="აღწერა">
+                    <ng-template pTemplate="header">
+                        <span class="ql-formats">
+                            <button type="button" class="ql-bold" aria-label="Bold"></button>
+                            <button type="button" class="ql-italic" aria-label="Italic"></button>
+                            <button type="button" class="ql-underline" aria-label="Underline"></button>
+                        </span>
+                    </ng-template>
+                </p-editor>
+                <hr>
+            </div>
+
+
+            <!-- EDUCATION -->
+
+            <div (click)="onShowEducation()" class="section-title">განათლება
+                <svg [ngClass]="{ rotate: showExperience, initial: !showExperience }" width="8" height="8"
+                    viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 1L1 7M1 1L7 7" stroke="#185ADB" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+
+            <div class="experience-header" *ngIf="showEducation">
+                <input class="custom-input" type="text" placeholder="უნივერსიტეტი" />
+                <input class="custom-input" type="text" placeholder="ხარისხი" />
+                <hr>
+            </div>
+        </div>
+        <div class="right-content">
+            <div class="section-title">პროფესიონალური უნარები</div>
+            <input class="custom-input" type="text" placeholder="შეყვანეთ თქვენი უნარი" />
+            <input class="custom-input" type="text" placeholder="შეყვანეთ თქვენი უნარი" />
+            <input class="custom-input" type="text" placeholder="შეყვანეთ თქვენი უნარი" />
+            <hr>
+            <div class="section-title">ენები</div>
+            <div class="d-flex">
+                <input class="custom-input" type="text" placeholder="ენა / დონე" />
+                <p-rating [cancel]="false"></p-rating>
+            </div>
+            <div class="d-flex">
+                <input class="custom-input" type="text" placeholder="ენა / დონე" />
+                <p-rating [cancel]="false"></p-rating>
+            </div>
+            <div class="d-flex">
+                <input class="custom-input" type="text" placeholder="ენა / დონე" />
+                <p-rating [cancel]="false"></p-rating>
+            </div>
+            <hr>
+        </div>
     </div>
+
 </div>
+<button (click)="downloadAsPDF()">Download as PDF</button>

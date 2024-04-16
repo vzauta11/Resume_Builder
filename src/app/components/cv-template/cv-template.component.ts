@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ContactDialogComponent } from './contact-dialog/contact-dialog.component';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { FileUploadModule } from 'primeng/fileupload';
+import { RatingModule } from 'primeng/rating';
 @Component({
   selector: 'app-cv-template',
   standalone: true,
@@ -16,21 +18,50 @@ import { InputNumberModule } from 'primeng/inputnumber';
     FormsModule,
     CommonModule,
     ContactDialogComponent,
-    InputNumberModule
-   ],
+    InputNumberModule,
+    FileUploadModule,
+    RatingModule
+  ],
   templateUrl: './cv-template.component.html',
-  styleUrl: './cv-template.component.scss'
+  styleUrl: './cv-template.component.scss',
 })
-
 export class CvTemplateComponent {
+  downloadAsPDF(): void {
+    const element = document.querySelector('.cv-container');
+    if (element) {
+      const opt = {
+        filename:     `${this.name}.pdf`,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 4 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait'}
+    };
+    
+
+        // Use html2pdf directly from the global scope
+        (window as any).html2pdf().from(element).set(opt).save();
+    }
+}
 
 
+  name!:string;//test
   showProfession: boolean = true;
   showEmail: boolean = true;
   showPhone: boolean = true;
   showLocation: boolean = true;
   showBirthdate: boolean = true;
-  showDialoge : boolean = false
+  showDialoge: boolean = false;
+  //
+  showExperience:boolean = true;
+  showEducation:boolean = true;
+
+
+
+  onShowExperience(){
+    this.showExperience = !this.showExperience
+  }
+  onShowEducation(){
+    this.showEducation = !this.showEducation
+  }
 
   onShowEmail(event: boolean) {
     this.showEmail = event;
@@ -52,13 +83,11 @@ export class CvTemplateComponent {
     this.showProfession = event;
   }
 
-  onCloseDialoge(event:boolean) {
-    this.showDialoge = event
+  onCloseDialoge(event: boolean) {
+    this.showDialoge = event;
   }
 
   onShowDialoge() {
-    this.showDialoge = true
+    this.showDialoge = true;
   }
-
-
 }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { InputSwitchModule } from 'primeng/inputswitch';
@@ -12,42 +12,51 @@ import { InputSwitchModule } from 'primeng/inputswitch';
   styleUrl: './contact-dialog.component.scss',
 })
 export class ContactDialogComponent {
-  @Input() showDialoge: boolean = false;
 
-  @Output() showDialogeEmit = new EventEmitter<boolean>(true);
-  @Output() showPhoneEmit = new EventEmitter<boolean>(true);
-  @Output() showEmailEmit = new EventEmitter<boolean>(true);
-  @Output() showBirthdateEmit = new EventEmitter<boolean>(true);
-  @Output() showLocationEmit = new EventEmitter<boolean>(true);
-  @Output() showProfessionEmit = new EventEmitter<boolean>(true);
+  //
+  @Input() showDialog!: boolean;
+  @Output() showDialogChange = new EventEmitter<boolean>();
+
+  onShowDialoge() {
+    this.showDialogChange.emit(false);
+  }
+
+  //
+  @Input() showEmail!: boolean;
+  @Output() showEmailChange = new EventEmitter<boolean>();
 
   onShowEmail() {
-    this.showEmailEmit.emit(this.showEmail);
+    this.showEmailChange.emit(this.showEmail);
   }
+  // showPhone
+  @Input() showPhone!: boolean;
+  @Output() showPhoneChange = new EventEmitter<boolean>();
 
   onShowPhone() {
-    this.showPhoneEmit.emit(this.showPhone);
+    this.showPhoneChange.emit(this.showPhone);
   }
+
+  // showBirthdate
+  @Input() showBirthdate!: boolean;
+  @Output() showBirthdateChange = new EventEmitter<boolean>();
 
   onShowBirthdate() {
-    this.showBirthdateEmit.emit(this.showBirthdate);
+    this.showBirthdateChange.emit(this.showBirthdate);
   }
 
-  onShowLocation() {
-    this.showLocationEmit.emit(this.showLocation);
-  }
+  // showProfession
+  @Input() showProfession!: boolean;
+  @Output() showProfessionChange = new EventEmitter<boolean>();
 
   onShowProfession() {
-    this.showProfessionEmit.emit(this.showProfession);
+    this.showProfessionChange.emit(this.showProfession);
   }
 
-  showProfession: boolean = true;
-  showEmail: boolean = true;
-  showPhone: boolean = true;
-  showLocation: boolean = true;
-  showBirthdate: boolean = true;
+  // showLocation
+  @Input() showLocation!: boolean;
+  @Output() showLocationChange = new EventEmitter<boolean>();
 
-  closeDialoge() {
-    this.showDialogeEmit.emit(false)
+  onShowLocation() {
+    this.showLocationChange.emit(this.showLocation);
   }
 }
