@@ -1,0 +1,12 @@
+{
+  "page_header": "Page Header",
+  "profession": "Profession",
+  "name": "Enter your name",
+  "mobile": "Enter your phone number",
+  "email": "Enter your email",
+  "location": "Enter your location",
+  "birthday_date": "Enter your date of birth",
+  "resume": "Resume",
+  "experience_description": "Briefly tell about your experience"
+
+}

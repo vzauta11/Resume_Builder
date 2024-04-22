@@ -9,6 +9,11 @@ import { ContactDialogComponent } from './contact-dialog/contact-dialog.componen
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FileUploadModule } from 'primeng/fileupload';
 import { RatingModule } from 'primeng/rating';
+//ngx-translate
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { SelectButtonModule } from 'primeng/selectbutton';
+
+
 @Component({
   selector: 'app-cv-template',
   standalone: true,
@@ -20,12 +25,41 @@ import { RatingModule } from 'primeng/rating';
     ContactDialogComponent,
     InputNumberModule,
     FileUploadModule,
-    RatingModule
+    RatingModule,
+    TranslateModule,
+    SelectButtonModule
   ],
   templateUrl: './cv-template.component.html',
   styleUrl: './cv-template.component.scss',
 })
+
+
 export class CvTemplateComponent {
+
+
+  constructor(private translateService: TranslateService) {
+    this.initLanguage();
+  }
+  
+  private initLanguage() {
+    console.log('initLanguage')
+    const prevLanguage = localStorage.getItem('language') || 'ka';
+    console.log(prevLanguage)
+    this.translateService.use(prevLanguage);
+  }
+
+  stateOptions: any[] = [{ label: 'ka', value: 'ka' },{ label: 'en', value: 'en' }];
+
+  value: string = 'ka';
+  
+  setLanguage(event:any) {
+    let chosenLanguage = event.value
+     this.translateService.use(chosenLanguage);
+     localStorage.setItem('language', chosenLanguage);
+  }
+
+
+
   downloadAsPDF(): void {
     const element = document.querySelector('.cv-container');
     if (element) {

@@ -1,7 +1,21 @@
+<h1>{{"page_header" | translate }}</h1>
+
+<!-- <button (click)="updateLangauge()">update</button> -->
+
+<!-- <div>
+    <button pButton type="button" icon="pi pi-flag-icon pi-flag-ge" (click)="setLanguage('ka')"></button>
+    <button pButton type="button" icon="pi pi-flag-icon pi-flag-uk" (click)="setLanguage('en')"></button>
+  </div>
+   
+<div class="card flex justify-content-center">
+    <p-selectButton [options]="stateOptions" [(ngModel)]="value" optionLabel="label" optionValue="value"></p-selectButton>
+</div> -->
+<p-selectButton [options]="stateOptions" [(ngModel)]="value" optionLabel="label" optionValue="value" (onChange)="setLanguage($event)"></p-selectButton>
 <div class="cv-container">
     <div class="cv-header">
-        <input class="name-input" [(ngModel)]="name" type="text" placeholder="მიუთითეთ თქვენი სახელი" pInputText />
-        <input *ngIf="showProfession" class="profession-input" type="text" placeholder="პროფესია" pInputText />
+        <input class="name-input" [(ngModel)]="name" type="text" [placeholder]="'name' | translate" pInputText />
+        <input *ngIf="showProfession" class="profession-input" type="text" [placeholder]="'profession' | translate"
+            pInputText />
 
         <app-contact-dialog [(showDialog)]="showDialoge" [(showEmail)]="showEmail" [(showPhone)]="showPhone"
             [(showBirthdate)]="showBirthdate" [(showProfession)]="showProfession" [(showLocation)]="showLocation">
@@ -10,19 +24,19 @@
         <div class="contacts-container">
             <span class="p-input-icon-left" *ngIf="showPhone">
                 <i class="pi pi-phone contact-icon"></i>
-                <input class="contact-input" type="text" placeholder="შეიყვანეთ ტელეფონი" pInputText />
+                <input class="contact-input" type="text" [placeholder]="'mobile' | translate" pInputText />
             </span>
             <span class="p-input-icon-left" *ngIf="showLocation">
                 <i class="pi pi-map-marker contact-icon"></i>
-                <input class="contact-input" type="text" placeholder="შეიყვანეთ მდებარეობა" pInputText />
+                <input class="contact-input" type="text" [placeholder]="'location' | translate" pInputText />
             </span>
             <span class="p-input-icon-left" *ngIf="showEmail">
                 <i class="pi pi-envelope contact-icon"></i>
-                <input class="contact-input" type="text" placeholder="შეიყვანეთ ელ-ფოსტა" pInputText />
+                <input class="contact-input" type="text" [placeholder]="'email' | translate" pInputText />
             </span>
             <span class="p-input-icon-left" *ngIf="showBirthdate">
                 <i class="pi pi-calendar contact-icon"></i>
-                <input class="contact-input" type="text" placeholder="შეიყვანეთ დაბადების თარიღი" pInputText />
+                <input class="contact-input" type="text" [placeholder]="'birthday_date' | translate" pInputText />
             </span>
         </div>
 
@@ -35,8 +49,8 @@
 
     <div class="cv-content">
         <div class="left-content" [style]="{'width':'400px'}">
-            <div class="section-title">რეზიუმე</div>
-            <p-editor placeholder="დაწერეთ თქვენი გამოცდილების შესახებ მოკლე შეჯამება">
+            <div class="section-title">{{'resume' | translate}}</div>
+            <p-editor [placeholder]="'experience_description' | translate ">>
                 <ng-template pTemplate="header">
                     <span class="ql-formats">
                         <button type="button" class="ql-bold" aria-label="Bold"></button>
@@ -58,10 +72,12 @@
 
             <!-- EXPERIENCE -->
             <div class="experience-header" *ngIf="showExperience">
-                <input class="custom-input" type="text" placeholder="სათაური" />
-                <input class="custom-input" type="text" placeholder="კომპანიის სახელი" />
-                <input class="custom-input" type="text" placeholder="პერიოდი" />
-                <input class="custom-input" type="text" placeholder="მდებარეობა" />
+                <div class="experience-details">
+                    <input class="custom-input" type="text" placeholder="სათაური" />
+                    <input class="custom-input" type="text" placeholder="კომპანიის სახელი" />
+                    <input class="custom-input" type="text" placeholder="პერიოდი" />
+                    <input class="custom-input" type="text" placeholder="მდებარეობა" />
+                </div>
                 <p-editor placeholder="აღწერა">
                     <ng-template pTemplate="header">
                         <span class="ql-formats">
